@@ -1,4 +1,4 @@
-package com.example.prega_diet
+package com.hacklegends.pregadiet
 
 import io.flutter.embedding.android.FlutterActivity
 

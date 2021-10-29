@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.prega_diet">
+    package="com.hacklegends.pregadiet">
    <application
         android:label="Prega Diet"
         android:icon="@mipmap/ic_launcher">
