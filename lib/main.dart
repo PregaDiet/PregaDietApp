@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Prega Diet',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.orange,
           ),
           home: AuthenticationWrapper(),
         ),

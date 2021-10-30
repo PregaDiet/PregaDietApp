@@ -26,14 +26,32 @@ class ArticleDetails extends StatelessWidget {
               Text(
                 article.title,
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 40,
                   fontWeight: FontWeight.w600,
+                  color: Colors.black54,
                 ),
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.left,
               ),
               SizedBox(
-                height: 200,
-                child: Image.network(article.imageUrl),
+                height: 10,
+              ),
+              Container(
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                      blurRadius: 8,
+                      color: Colors.black38,
+                      offset: Offset(5, 5))
+                ]),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: SizedBox(
+                    height: 200,
+                    child: Image.network(article.imageUrl),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               MarkdownBody(
                 data: article.context,

@@ -18,17 +18,36 @@ class ArticlesScreen extends StatelessWidget {
           final articles = state.article;
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ListView.separated(
-                itemCount: articles.length,
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    height: 20,
-                  );
-                },
-                itemBuilder: (context, index) {
-                  final article = articles[index];
-                  return ArticleTile(article: article);
-                }),
+            child: ListView(
+              children: [
+                Text(
+                  'Articles for you',
+                  style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black45),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ListView.separated(
+                    itemCount: articles.length,
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: 20,
+                      );
+                    },
+                    itemBuilder: (context, index) {
+                      final article = articles[index];
+                      return ArticleTile(article: article);
+                    }),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           );
         } else if (state.loadStatus == LoadStatus.loading) {
           return LoadingScreen();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prega_diet/app_colors.dart';
 import 'package:prega_diet/login/screens/login_screen.dart';
 
 import 'signUp/screen/sign_up_screen.dart';
@@ -18,6 +19,25 @@ class _AuthScreenState extends State<AuthScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Spacer(),
+            Text(
+              'Welcome to',
+              style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 60,
+                color: Colors.black87,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+            Text(
+              'Prega Diet',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                fontSize: 60,
+                color: AppColors.green,
+              ),
+            ),
+            Spacer(),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
@@ -31,7 +51,8 @@ class _AuthScreenState extends State<AuthScreen> {
                     MaterialPageRoute(builder: (context) => SignUpScreen()));
               },
               child: Text('Sign Up'),
-            )
+            ),
+            Spacer(),
           ],
         ),
       ),
