@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:prega_diet/app_colors.dart';
 import 'package:prega_diet/articles/screen/articles_screen.dart';
+import 'package:prega_diet/hospitals/screen/hospital_screen.dart';
 import 'package:prega_diet/profile/profile_screen.dart';
-import 'package:prega_diet/scan/scan_screen.dart';
+import 'package:prega_diet/scan/screen/scan_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,6 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         return ScanScreen();
       case 2:
+        return HospitalScreen();
+      case 3:
         return ProfileScreen();
       default:
         return const Center(
@@ -44,7 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
         initialActiveIndex: selectedScreen,
         items: const [
           TabItem(icon: Icons.map, title: 'Articles'),
-          TabItem(icon: Icons.add, title: 'Scan'),
+          TabItem(icon: Icons.qr_code_scanner, title: 'Scan'),
+          TabItem(icon: Icons.local_hospital, title: 'Hospitals'),
           TabItem(icon: Icons.message, title: 'Profile'),
         ],
         onTap: (val) {

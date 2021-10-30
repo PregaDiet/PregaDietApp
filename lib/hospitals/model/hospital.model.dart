@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-class Hospital {
+import 'package:equatable/equatable.dart';
+
+class Hospital extends Equatable {
   final String name;
   final String address;
   final String map;
@@ -37,4 +39,13 @@ class Hospital {
       url: map['url'],
     );
   }
+
+  @override
+  List<Object?> get props => [
+        name,
+        address,
+        map,
+        phoneNumber,
+        url,
+      ];
 }

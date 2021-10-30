@@ -10,6 +10,7 @@ class ProfileScreen extends StatelessWidget {
     return Center(
       child: Column(
         children: [
+          Spacer(),
           Text(context.read<LoginCubit>().state.userDetails.firstName),
           ElevatedButton(
             child: Text('Sign out'),
@@ -17,6 +18,7 @@ class ProfileScreen extends StatelessWidget {
               context.read<LoginCubit>().signOut();
             },
           ),
+          Spacer(),
         ],
       ),
     );

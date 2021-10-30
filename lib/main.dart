@@ -8,8 +8,12 @@ import 'package:prega_diet/articles/repository/articles_repository.dart';
 import 'package:prega_diet/auth/bloc/auth_bloc.dart';
 import 'package:prega_diet/auth/screen/authentication_wrapper.dart';
 import 'package:prega_diet/homescreen.dart';
+import 'package:prega_diet/scan/cubit/scan_cubit.dart';
+import 'package:prega_diet/scan/repository/scan_repository.dart';
 
 import 'auth/repository/auth_repositiry.dart';
+import 'hospitals/cubit/hospitals_cubit.dart';
+import 'hospitals/repository/hospitals_repository.dart';
 import 'login/cubit/login_cubit.dart';
 import 'login/repository/login_repository.dart';
 
@@ -39,6 +43,12 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               ArticleRepository(firestore: FirebaseFirestore.instance),
         ),
+        RepositoryProvider(
+          create: (context) => HospitalsRepository(),
+        ),
+        RepositoryProvider(
+          create: (context) => ScanRepository(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -53,6 +63,14 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) =>
                 ArticlesCubit(repository: context.read<ArticleRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                HospitalsCubit(repository: context.read<HospitalsRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                ScanCubit(repository: context.read<ScanRepository>()),
           ),
         ],
         child: MaterialApp(
