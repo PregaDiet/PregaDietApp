@@ -2,7 +2,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:prega_diet/app_colors.dart';
-import 'package:prega_diet/articles/articles_screen.dart';
+import 'package:prega_diet/articles/screen/articles_screen.dart';
 import 'package:prega_diet/profile/profile_screen.dart';
 import 'package:prega_diet/scan/scan_screen.dart';
 
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       body: _chooseScreen(),
       bottomNavigationBar: ConvexAppBar(
         backgroundColor: Colors.white,
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Colors.black54,
         initialActiveIndex: selectedScreen,
         items: const [
-          TabItem(icon: Icons.map, title: 'Explore'),
+          TabItem(icon: Icons.map, title: 'Articles'),
           TabItem(icon: Icons.add, title: 'Scan'),
           TabItem(icon: Icons.message, title: 'Profile'),
         ],

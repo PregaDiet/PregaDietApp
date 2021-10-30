@@ -1,9 +1,11 @@
-import 'package:colco_demo/auth/bloc/auth_bloc.dart';
-import 'package:colco_demo/common/screens/loading_screen.dart';
-import 'package:colco_demo/home/screens/home_screen.dart';
-import 'package:colco_demo/login/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prega_diet/auth/bloc/auth_bloc.dart';
+import 'package:prega_diet/auth_screen.dart';
+import 'package:prega_diet/common/screen/loading_screen.dart';
+import 'package:prega_diet/login/screens/login_screen.dart';
+
+import '../../homescreen.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
   const AuthenticationWrapper({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class AuthenticationWrapper extends StatelessWidget {
         if (state is Authenticated) {
           return const HomeScreen();
         } else if (state is UnAuthenticated) {
-          return const LoginScreen();
+          return AuthScreen();
         } else {
           return const LoadingScreen();
         }

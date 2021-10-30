@@ -1,7 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prega_diet/articles/cubit/articles_cubit.dart';
+import 'package:prega_diet/articles/repository/articles_repository.dart';
+import 'package:prega_diet/auth/bloc/auth_bloc.dart';
+import 'package:prega_diet/auth/screen/authentication_wrapper.dart';
 import 'package:prega_diet/homescreen.dart';
 
-void main() {
+import 'auth/repository/auth_repositiry.dart';
+import 'login/cubit/login_cubit.dart';
+import 'login/repository/login_repository.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -11,21 +25,44 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Prega Diet',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => AuthRepository(auth: FirebaseAuth.instance),
+        ),
+        RepositoryProvider(
+          create: (context) => LoginRepository(
+              auth: FirebaseAuth.instance,
+              firestore: FirebaseFirestore.instance),
+        ),
+        RepositoryProvider(
+          create: (context) =>
+              ArticleRepository(firestore: FirebaseFirestore.instance),
+        ),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) =>
+                AuthBloc(repository: context.read<AuthRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                LoginCubit(repository: context.read<LoginRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                ArticlesCubit(repository: context.read<ArticleRepository>()),
+          ),
+        ],
+        child: MaterialApp(
+          title: 'Prega Diet',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: AuthenticationWrapper(),
+        ),
       ),
-      home: HomeScreen(),
     );
   }
 }

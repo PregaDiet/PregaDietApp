@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1081781406555",
+    "project_id": "prega-diet",
+    "storage_bucket": "prega-diet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081781406555:android:6d990e4f6cb90522cda87e",
+        "android_client_info": {
+          "package_name": "com.hacklegends.pregadiet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081781406555-lujbaq2o5bjj1f6urk5n1hepfnlis9dp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDBlU4RTtBK8yiHj8szx9tD-IY5os34LM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081781406555-lujbaq2o5bjj1f6urk5n1hepfnlis9dp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

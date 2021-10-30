@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:colco_demo/auth/repository/auth_repositiry.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
+import 'package:prega_diet/auth/repository/auth_repositiry.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
