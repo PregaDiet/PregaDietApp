@@ -10,25 +10,25 @@ class HospitalsRepository {
   Future<List<Hospital>> getHospitals() async {
     List<Hospital> hospitals = [];
 
-    await Future.delayed(Duration(seconds: 2));
-    for (final hospital in dummyHospitals) {
-      hospitals.add(hospital);
-    }
-
-    // final location = await getLocation();
-
-    // String lat = location.latitude.toString();
-    // String long = location.longitude.toString();
-    // Uri url = Uri.http('172.104.206.215:8080', '/hospitals/$lat/$long');
-    // final response = await http.get(url);
-
-    // if (response.statusCode == 200) {
-    //   final data = json.decode(response.body)['hospitals'];
-
-    //   for (final hospital in data) {
-    //     hospitals.add(Hospital.fromMap(hospital));
-    //   }
+    // await Future.delayed(Duration(seconds: 2));
+    // for (final hospital in dummyHospitals) {
+    //   hospitals.add(hospital);
     // }
+
+    final location = await getLocation();
+
+    String lat = location.latitude.toString();
+    String long = location.longitude.toString();
+    Uri url = Uri.http('172.104.206.215:8080', '/hospitals/$lat/$long');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body)['hospitals'];
+
+      for (final hospital in data) {
+        hospitals.add(Hospital.fromMap(hospital));
+      }
+    }
 
     return hospitals;
   }
