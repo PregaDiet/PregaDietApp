@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:prega_diet/articles/model/article.model.dart';
-import 'package:prega_diet/common/firebase_constats.dart';
+
+import '../../common/firebase_constats.dart';
+import '../model/article.model.dart';
 
 class ArticleRepository {
   ArticleRepository({required this.firestore});

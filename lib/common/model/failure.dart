@@ -5,7 +5,10 @@ class Failure extends Equatable {
 
   final StackTrace? stackTrace;
 
-  const Failure([this.exception, this.stackTrace]);
+  const Failure([
+    this.exception,
+    this.stackTrace,
+  ]);
 
   @override
   List<Object?> get props => [

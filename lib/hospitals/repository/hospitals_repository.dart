@@ -1,17 +1,64 @@
-import 'package:prega_diet/hospitals/model/hospital.model.dart';
+import 'dart:convert';
+
+import 'package:location/location.dart';
+
+import '../model/hospital.model.dart';
+import 'package:http/http.dart' as http;
 
 class HospitalsRepository {
   Future<List<Hospital>> getHospitals() async {
     List<Hospital> hospitals = [];
 
     await Future.delayed(Duration(seconds: 2));
-
     for (final hospital in dummyHospitals) {
       hospitals.add(hospital);
     }
 
+    // final location = await getLocation();
+
+    // String lat = location.latitude.toString();
+    // String long = location.longitude.toString();
+    // Uri url = Uri.http('172.104.206.215:8080', '/hospitals/$lat/$long');
+    // final response = await http.get(url);
+
+    // if (response.statusCode == 200) {
+    //   final data = json.decode(response.body)['hospitals'];
+
+    //   for (final hospital in data) {
+    //     hospitals.add(Hospital.fromMap(hospital));
+    //   }
+    // }
+
     return hospitals;
   }
+}
+
+Future<LocationData> getLocation() async {
+  Location location = Location();
+
+  bool _serviceEnabled;
+  PermissionStatus _permissionGranted;
+  LocationData _locationData;
+
+  _serviceEnabled = await location.serviceEnabled();
+  if (!_serviceEnabled) {
+    _serviceEnabled = await location.requestService();
+    if (!_serviceEnabled) {
+      throw 'service-not-enabled';
+    }
+  }
+
+  _permissionGranted = await location.hasPermission();
+  if (_permissionGranted == PermissionStatus.denied) {
+    _permissionGranted = await location.requestPermission();
+    if (_permissionGranted != PermissionStatus.granted) {
+      throw 'permission-not-granted';
+    }
+  }
+
+  _locationData = await location.getLocation();
+
+  return _locationData;
 }
 
 List dummyHospitals = [

@@ -7,7 +7,7 @@ class Hospital extends Equatable {
   final String address;
   final String map;
   final String phoneNumber;
-  final double rating;
+  final double? rating;
   final String url;
   Hospital({
     required this.name,
@@ -30,13 +30,19 @@ class Hospital extends Equatable {
   }
 
   factory Hospital.fromMap(Map<String, dynamic> map) {
+    late final double? rating;
+    if (map['rating'].runtimeType == String) {
+      rating = null;
+    } else {
+      rating = (map['rating'] as num?)?.toDouble();
+    }
     return Hospital(
-      name: map['name'],
-      address: map['address'],
-      map: map['map'],
-      phoneNumber: map['phone_number'],
-      rating: map['rating'],
-      url: map['url'],
+      name: map['name'] ?? '',
+      address: map['address'] ?? '',
+      map: map['map'] ?? '',
+      phoneNumber: map['phone_number'] ?? '',
+      rating: rating,
+      url: map['url'] ?? '',
     );
   }
 

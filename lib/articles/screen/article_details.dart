@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:prega_diet/articles/model/article.model.dart';
+import '../model/article.model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ArticleDetails extends StatelessWidget {

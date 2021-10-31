@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:prega_diet/common/model/failure.dart';
-import 'package:prega_diet/common/model/load_status.enum.dart';
-import 'package:prega_diet/hospitals/model/hospital.model.dart';
-import 'package:prega_diet/hospitals/repository/hospitals_repository.dart';
+
+import '../../common/model/failure.dart';
+import '../../common/model/load_status.enum.dart';
+import '../model/hospital.model.dart';
+import '../repository/hospitals_repository.dart';
 
 part 'hospitals_state.dart';
 

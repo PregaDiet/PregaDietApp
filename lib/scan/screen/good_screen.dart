@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:prega_diet/scan/model/product.model.dart';
+import '../model/product.model.dart';
 
 class GoodScreen extends StatelessWidget {
   const GoodScreen({Key? key, required this.product}) : super(key: key);

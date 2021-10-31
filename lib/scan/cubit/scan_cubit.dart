@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:prega_diet/common/model/failure.dart';
-import 'package:prega_diet/common/model/load_status.enum.dart';
-import 'package:prega_diet/scan/model/product.model.dart';
-import 'package:prega_diet/scan/repository/scan_repository.dart';
+import '../../common/model/failure.dart';
+import '../../common/model/load_status.enum.dart';
+import '../model/product.model.dart';
+import '../repository/scan_repository.dart';
 
 part 'scan_state.dart';
 

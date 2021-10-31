@@ -3,13 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prega_diet/articles/cubit/articles_cubit.dart';
-import 'package:prega_diet/articles/repository/articles_repository.dart';
-import 'package:prega_diet/auth/bloc/auth_bloc.dart';
-import 'package:prega_diet/auth/screen/authentication_wrapper.dart';
-import 'package:prega_diet/homescreen.dart';
-import 'package:prega_diet/scan/cubit/scan_cubit.dart';
-import 'package:prega_diet/scan/repository/scan_repository.dart';
+import 'articles/cubit/articles_cubit.dart';
+import 'articles/repository/articles_repository.dart';
+import 'auth/bloc/auth_bloc.dart';
+import 'auth/screen/authentication_wrapper.dart';
+import 'contact/cubit/contact_cubit.dart';
+import 'contact/repository/contact_repository.dart';
+import 'homescreen.dart';
+import 'scan/cubit/scan_cubit.dart';
+import 'scan/repository/scan_repository.dart';
 
 import 'auth/repository/auth_repositiry.dart';
 import 'hospitals/cubit/hospitals_cubit.dart';
@@ -49,6 +51,10 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
           create: (context) => ScanRepository(),
         ),
+        RepositoryProvider(
+          create: (context) =>
+              ContactRepository(firestore: FirebaseFirestore.instance),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -71,6 +77,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) =>
                 ScanCubit(repository: context.read<ScanRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                ContactCubit(repository: context.read<ContactRepository>()),
           ),
         ],
         child: MaterialApp(

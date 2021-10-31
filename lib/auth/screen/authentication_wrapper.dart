@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prega_diet/auth/bloc/auth_bloc.dart';
-import 'package:prega_diet/auth_screen.dart';
-import 'package:prega_diet/common/screen/loading_screen.dart';
-import 'package:prega_diet/login/screens/login_screen.dart';
+import '../bloc/auth_bloc.dart';
+import 'user_details_wrapper.dart';
+import '../../auth_screen.dart';
+import '../../common/screen/loading_screen.dart';
+import '../../login/cubit/login_cubit.dart';
+import '../../login/repository/login_repository.dart';
+import '../../login/screens/login_screen.dart';
 
 import '../../homescreen.dart';
 
@@ -15,7 +18,7 @@ class AuthenticationWrapper extends StatelessWidget {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state is Authenticated) {
-          return const HomeScreen();
+          return UserDetailsWrapper();
         } else if (state is UnAuthenticated) {
           return AuthScreen();
         } else {

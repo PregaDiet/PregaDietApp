@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:prega_diet/app_colors.dart';
+import '../../app_colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prega_diet/common/model/load_status.enum.dart';
-import 'package:prega_diet/common/screen/loading_screen.dart';
-import 'package:prega_diet/scan/cubit/scan_cubit.dart';
-import 'package:prega_diet/scan/screen/good_screen.dart';
+import '../../common/model/load_status.enum.dart';
+import '../../common/screen/loading_screen.dart';
+import '../cubit/scan_cubit.dart';
+import 'good_screen.dart';
 
 import 'bad_screen.dart';
 
@@ -71,7 +71,7 @@ class _ScanScreenState extends State<ScanScreen> {
                     height: 50,
                   ),
                   Text(
-                    'Not sure if the product is good for your pregnancy?',
+                    'Not sure if the product is good for your health?',
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 60,

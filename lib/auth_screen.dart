@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:prega_diet/app_colors.dart';
-import 'package:prega_diet/login/screens/login_screen.dart';
+import 'app_colors.dart';
+import 'login/screens/login_screen.dart';
 
+import 'common/widgets/my_buttons.dart';
 import 'signUp/screen/sign_up_screen.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -38,19 +39,22 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
             ),
             Spacer(),
-            ElevatedButton(
-              onPressed: () {
+            MyButton(
+              onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LoginScreen()));
               },
-              child: Text('Login'),
+              color: AppColors.orange,
+              text: 'Login',
             ),
-            ElevatedButton(
-              onPressed: () {
+            SizedBox(height: 10),
+            MyButton(
+              onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => SignUpScreen()));
               },
-              child: Text('Sign Up'),
+              text: 'Sign Up',
+              color: AppColors.orange,
             ),
             Spacer(),
           ],

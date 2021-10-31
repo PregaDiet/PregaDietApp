@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prega_diet/common/model/load_status.enum.dart';
-import 'package:prega_diet/common/screen/loading_screen.dart';
-import 'package:prega_diet/login/cubit/login_cubit.dart';
+import '../../app_colors.dart';
+import '../../common/model/load_status.enum.dart';
+import '../../common/screen/loading_screen.dart';
+import '../../common/widgets/my_buttons.dart';
+import '../cubit/login_cubit.dart';
 
 import '../../homescreen.dart';
 
@@ -22,9 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state.loadStatus == LoadStatus.error) {
@@ -35,57 +34,82 @@ class _LoginScreenState extends State<LoginScreen> {
         builder: (context, state) {
           if (state.loadStatus == LoadStatus.initial ||
               state.loadStatus == LoadStatus.error) {
-            return Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Spacer(),
-                  TextFormField(
-                    validator: (val) {
-                      if (val == null || !val.contains('@') || val.isEmpty) {
-                        return 'Invalid email';
-                      }
-                    },
-                    onChanged: (val) {
-                      setState(() {
-                        email = val;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email',
-                    ),
+            return SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Spacer(),
+                      Text(
+                        'Login',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 60,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 100,
+                      ),
+                      TextFormField(
+                        autofocus: true,
+                        validator: (val) {
+                          if (val == null ||
+                              !val.contains('@') ||
+                              val.isEmpty) {
+                            return 'Invalid email';
+                          }
+                        },
+                        onChanged: (val) {
+                          setState(() {
+                            email = val;
+                          });
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Email',
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      TextFormField(
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return 'Invalid password';
+                          }
+                        },
+                        onChanged: (val) {
+                          setState(() {
+                            password = val;
+                          });
+                        },
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      MyButton(
+                        onTap: () async {
+                          FocusScopeNode().unfocus();
+                          if (_formKey.currentState!.validate()) {
+                            await context
+                                .read<LoginCubit>()
+                                .signIn(email: email, password: password);
+                            Navigator.pop(context);
+                          }
+                        },
+                        text: 'Login',
+                        color: AppColors.orange,
+                      ),
+                      Spacer(),
+                    ],
                   ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    validator: (val) {
-                      if (val == null || val.isEmpty) {
-                        return 'Invalid password';
-                      }
-                    },
-                    onChanged: (val) {
-                      setState(() {
-                        password = val;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          await context
-                              .read<LoginCubit>()
-                              .signIn(email: email, password: password);
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Text('Login')),
-                  Spacer(),
-                ],
+                ),
               ),
             );
           } else if (state.loadStatus == LoadStatus.loading) {

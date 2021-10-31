@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prega_diet/common/model/load_status.enum.dart';
-import 'package:prega_diet/common/screen/loading_screen.dart';
+import '../../common/model/load_status.enum.dart';
+import '../../common/screen/loading_screen.dart';
 
 import '../cubit/articles_cubit.dart';
 import 'widgets/article_tile.dart';

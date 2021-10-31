@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:prega_diet/app_colors.dart';
-import 'package:prega_diet/articles/screen/article_details.dart';
-import 'package:prega_diet/hospitals/model/hospital.model.dart';
+import '../../../app_colors.dart';
+import '../../../articles/screen/article_details.dart';
+import '../../model/hospital.model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HospitalTile extends StatelessWidget {
@@ -28,7 +28,7 @@ class HospitalTile extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 5),
         padding: EdgeInsets.all(10),
-        height: 150,
+        //height: 150,
         width: double.maxFinite,
         decoration: BoxDecoration(
             color: Colors.white,

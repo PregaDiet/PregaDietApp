@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Product {
   final String name;
   final bool isGood;

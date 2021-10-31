@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prega_diet/articles/model/article.model.dart';
-import 'package:prega_diet/articles/screen/article_details.dart';
+import '../../model/article.model.dart';
+import '../article_details.dart';
 
 class ArticleTile extends StatelessWidget {
   const ArticleTile({Key? key, required this.article}) : super(key: key);

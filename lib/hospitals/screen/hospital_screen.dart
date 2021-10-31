@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prega_diet/common/model/load_status.enum.dart';
-import 'package:prega_diet/common/screen/loading_screen.dart';
-import 'package:prega_diet/hospitals/cubit/hospitals_cubit.dart';
-import 'package:prega_diet/hospitals/screen/widgets/hospital_tile.dart';
+import '../../common/model/load_status.enum.dart';
+import '../../common/screen/loading_screen.dart';
+import '../cubit/hospitals_cubit.dart';
+import 'widgets/hospital_tile.dart';
 
 class HospitalScreen extends StatelessWidget {
   const HospitalScreen({Key? key}) : super(key: key);
@@ -46,6 +46,8 @@ class HospitalScreen extends StatelessWidget {
         } else if (state.loadStatus == LoadStatus.loading) {
           return LoadingScreen();
         } else if (state.loadStatus == LoadStatus.error) {
+          print(state.failure.exception);
+          print(state.failure.stackTrace);
           return Center(
             child: Text('An Error Occured'),
           );

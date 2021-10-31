@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:prega_diet/scan/model/product.model.dart';
+import '../model/product.model.dart';
 
 class ScanRepository {
   Future<Product?> getProductInfo() async {
