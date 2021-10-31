@@ -24,8 +24,20 @@ class _AddContactState extends State<AddContact> {
         child: Form(
           key: _formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Spacer(),
+              Text(
+                'Add Emergency Contact',
+                style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 60,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(
+                height: 100,
+              ),
               Row(
                 children: [
                   CountryCodePicker(
@@ -57,6 +69,7 @@ class _AddContactState extends State<AddContact> {
                   ),
                 ],
               ),
+              SizedBox(height: 10),
               MyButton(
                 onTap: () {
                   FocusScope.of(context).unfocus();
@@ -70,7 +83,8 @@ class _AddContactState extends State<AddContact> {
                 },
                 text: 'Add',
                 color: AppColors.green,
-              )
+              ),
+              Spacer(),
             ],
           ),
         ),

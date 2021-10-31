@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:location/location.dart';
+import 'package:prega_diet/common/get_location.dart';
 
 import '../model/hospital.model.dart';
 import 'package:http/http.dart' as http;
@@ -31,34 +32,6 @@ class HospitalsRepository {
 
     return hospitals;
   }
-}
-
-Future<LocationData> getLocation() async {
-  Location location = Location();
-
-  bool _serviceEnabled;
-  PermissionStatus _permissionGranted;
-  LocationData _locationData;
-
-  _serviceEnabled = await location.serviceEnabled();
-  if (!_serviceEnabled) {
-    _serviceEnabled = await location.requestService();
-    if (!_serviceEnabled) {
-      throw 'service-not-enabled';
-    }
-  }
-
-  _permissionGranted = await location.hasPermission();
-  if (_permissionGranted == PermissionStatus.denied) {
-    _permissionGranted = await location.requestPermission();
-    if (_permissionGranted != PermissionStatus.granted) {
-      throw 'permission-not-granted';
-    }
-  }
-
-  _locationData = await location.getLocation();
-
-  return _locationData;
 }
 
 List dummyHospitals = [

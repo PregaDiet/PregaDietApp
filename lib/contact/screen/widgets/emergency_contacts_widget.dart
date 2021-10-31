@@ -27,15 +27,43 @@ class EmergencyContactsWidget extends StatelessWidget {
           Widget _buildContactsList() {
             return Column(
               children: [
-                Text('Contacts'),
+                Text(
+                  'Your Emergency Contacts',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black45,
+                  ),
+                ),
                 Column(
                   children: contacts.map((e) {
                     return Container(
                         margin: EdgeInsets.all(10),
-                        height: 100,
-                        width: double.infinity,
+                        padding: EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        decoration: BoxDecoration(
+                          color: AppColors.orange,
+                        ),
                         alignment: Alignment.center,
-                        child: Text(e));
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Spacer(),
+                            Text(
+                              e,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Spacer(),
+                            IconButton(
+                                onPressed: () {
+                                  context.read<ContactCubit>().removeContact(e);
+                                },
+                                icon: Icon(Icons.remove))
+                          ],
+                        ));
                   }).toList(),
                 ),
                 if (contacts.length < 3)
@@ -50,7 +78,7 @@ class EmergencyContactsWidget extends StatelessWidget {
                         context.read<ContactCubit>().addContact(result);
                       }
                     },
-                    color: AppColors.green,
+                    color: AppColors.orange,
                     text: 'Add',
                   )
               ],
@@ -60,7 +88,11 @@ class EmergencyContactsWidget extends StatelessWidget {
           if (contacts.isEmpty) {
             return Column(
               children: [
-                Text('No Contacts'),
+                Text(
+                  'No Contacts Added',
+                  style: TextStyle(color: Colors.black54, fontSize: 20),
+                ),
+                SizedBox(height: 5),
                 if (contacts.length < 3)
                   MyButton(
                     onTap: () async {

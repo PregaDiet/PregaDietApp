@@ -16,16 +16,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int selectedScreen = 3;
+  int selectedScreen = 2;
 
   Widget _chooseScreen() {
     switch (selectedScreen) {
       case 0:
         return ArticlesScreen();
       case 1:
-        return ScanScreen();
-      case 2:
         return HospitalScreen();
+      case 2:
+        return ScanScreen();
       case 3:
         return ContactScreen();
       case 4:
@@ -50,8 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
         initialActiveIndex: selectedScreen,
         items: const [
           TabItem(icon: Icons.map, title: 'Articles'),
-          TabItem(icon: Icons.qr_code_scanner, title: 'Scan'),
           TabItem(icon: Icons.local_hospital, title: 'Hospitals'),
+          TabItem(icon: Icons.qr_code_scanner, title: 'Scan'),
           TabItem(icon: Icons.call, title: 'Contact'),
           TabItem(icon: Icons.message, title: 'Profile'),
         ],

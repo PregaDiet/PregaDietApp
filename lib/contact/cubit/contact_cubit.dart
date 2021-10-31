@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:prega_diet/common/model/failure.dart';
 import 'package:prega_diet/common/model/load_status.enum.dart';
+import 'package:prega_diet/contact/model/aasha_contact.dart';
 import '../repository/contact_repository.dart';
 
 part 'contact_state.dart';
@@ -31,13 +32,13 @@ class ContactCubit extends Cubit<ContactState> {
     }
   }
 
-  addContact(String contact) {
+  Future<void> addContact(String contact) async {
     emit(state.copyWith(loadStatus: LoadStatus.loading));
 
     try {
       final updated = [...state.emergencyContacts, contact];
 
-      repository.updateContacts(updated);
+      await repository.updateContacts(updated);
 
       emit(state.copyWith(
           loadStatus: LoadStatus.loaded, emergencyContacts: updated));
@@ -51,7 +52,7 @@ class ContactCubit extends Cubit<ContactState> {
     }
   }
 
-  removeContact(String contact) {
+  Future<void> removeContact(String contact) async {
     emit(state.copyWith(loadStatus: LoadStatus.loading));
 
     try {
@@ -59,7 +60,7 @@ class ContactCubit extends Cubit<ContactState> {
           .where((element) => element != contact)
           .toList();
 
-      repository.updateContacts(updated);
+      await repository.updateContacts(updated);
 
       emit(state.copyWith(
           loadStatus: LoadStatus.loaded, emergencyContacts: updated));
@@ -70,6 +71,37 @@ class ContactCubit extends Cubit<ContactState> {
           failure: Failure(e, s),
         ),
       );
+    }
+  }
+
+  Future<void> notifyContacts(String name) async {
+    emit(state.copyWith(loadStatus: LoadStatus.loading));
+
+    try {
+      await repository.notifyAll(name, state.emergencyContacts);
+      emit(state.copyWith(loadStatus: LoadStatus.loaded));
+    } catch (e, s) {
+      emit(
+        state.copyWith(
+          loadStatus: LoadStatus.error,
+          failure: Failure(e, s),
+        ),
+      );
+    }
+  }
+
+  Future<AashaContact?> getAasha(String city) async {
+    emit(state.copyWith(loadStatus: LoadStatus.loading));
+    try {
+      final result = await repository.getAasha(city);
+      if (result != null) {
+        emit(state.copyWith(loadStatus: LoadStatus.loaded));
+        return result;
+      }
+      emit(state.copyWith(loadStatus: LoadStatus.loaded));
+    } catch (e, s) {
+      emit(
+          state.copyWith(failure: Failure(e, s), loadStatus: LoadStatus.error));
     }
   }
 }

@@ -9,12 +9,13 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final details = context.read<LoginCubit>().state.userDetails;
     return Center(
       child: Column(
         children: [
           Spacer(),
           Text(
-            context.read<LoginCubit>().state.userDetails.firstName,
+            details.firstName + ' ' + details.lastName,
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
@@ -24,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
             height: 5,
           ),
           Text(
-            context.read<LoginCubit>().state.userDetails.lastName,
+            context.read<LoginCubit>().state.userDetails.city,
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,

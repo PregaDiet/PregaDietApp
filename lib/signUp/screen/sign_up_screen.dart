@@ -22,11 +22,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String password = '';
   String firstName = '';
   String lastName = '';
-  String city = '';
+  String city = selectedCities.first;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state.loadStatus == LoadStatus.error) {
@@ -44,7 +45,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      Spacer(),
+                      SizedBox(
+                        height: 50,
+                      ),
                       Text(
                         'Sign Up',
                         style: TextStyle(
@@ -94,24 +97,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           labelText: 'Last Name',
                         ),
                       ),
-                      TextFormField(
-                        validator: (val) {
-                          // if (val == null || !val.contains('@') || val.isEmpty) {
-                          //   return 'Invalid email';
-                          // }
-                        },
-                        textCapitalization: TextCapitalization.words,
-                        keyboardType: TextInputType.name,
-                        onChanged: (val) {
-                          setState(() {
-                            city = val;
-                          });
-                        },
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'City',
-                        ),
-                      ),
+                      SizedBox(height: 20),
+                      DropdownButtonFormField<String>(
+                          value: city,
+                          onChanged: (val) {
+                            if (val != null) {
+                              setState(() {
+                                city = val;
+                              });
+                            }
+                          },
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'City',
+                          ),
+                          items: selectedCities.map((e) {
+                            return DropdownMenuItem(
+                              value: e,
+                              child: Text(e),
+                            );
+                          }).toList()),
+                      // TextFormField(
+                      //   validator: (val) {
+                      //     // if (val == null || !val.contains('@') || val.isEmpty) {
+                      //     //   return 'Invalid email';
+                      //     // }
+                      //   },
+                      //   textCapitalization: TextCapitalization.words,
+                      //   keyboardType: TextInputType.name,
+                      //   onChanged: (val) {
+                      //     setState(() {
+                      //       city = val;
+                      //     });
+                      //   },
+                      //   decoration: InputDecoration(
+                      //     border: OutlineInputBorder(),
+                      //     labelText: 'City',
+                      //   ),
+                      // ),
                       SizedBox(height: 20),
                       TextFormField(
                         validator: (val) {
@@ -185,3 +208,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+
+final selectedCities = [
+  'Mumbai',
+  'Jaipur',
+  'Surat',
+  'Delhi',
+  'Bangalore'
+      'Chennai',
+  'Kolkata',
+  'Kanpur',
+  'Nagpur',
+  'Indore',
+  'Bhopal'
+];
