@@ -5,9 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../common/model/load_status.enum.dart';
 import '../../common/screen/loading_screen.dart';
 import '../cubit/scan_cubit.dart';
-import 'good_screen.dart';
-
-import 'bad_screen.dart';
+import 'scan_result_screen.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({Key? key}) : super(key: key);
@@ -21,20 +19,6 @@ class _ScanScreenState extends State<ScanScreen> {
 
   bool tapped = false;
 
-  // Future<void> scan() async {
-  //   print('Scanning');
-  //   final response = await FlutterBarcodeScanner.scanBarcode(
-  //       '#9dcd5a', 'Cancle', true, ScanMode.BARCODE);
-
-  //   if (response != '-1') {
-  //     setState(() {
-  //       text = response;
-  //     });
-  //   } else {
-  //     print('cancled');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ScanCubit, ScanState>(
@@ -44,7 +28,8 @@ class _ScanScreenState extends State<ScanScreen> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => GoodScreen(product: state.product!)));
+                  builder: (context) =>
+                      ScanResultScreen(product: state.product!)));
           // } else {
           //   Navigator.push(
           //       context, MaterialPageRoute(builder: (context) => BadScreen()));

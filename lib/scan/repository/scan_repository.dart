@@ -19,7 +19,7 @@ class ScanRepository {
     }
 
     // await Future.delayed(Duration(seconds: 1));
-
+    // barCode = '8901719101038';
     // return dummyProducts[Random().nextInt(dummyProducts.length)];
     Uri url = Uri.http('172.104.206.215:8080', '/scan/$barCode');
     final httpResponse = await http.get(url);
@@ -27,7 +27,11 @@ class ScanRepository {
     if (httpResponse.statusCode == 200) {
       final data = json.decode(httpResponse.body);
 
-      print(data);
+      Product product = Product.fromMap(data);
+
+      return product;
+    } else {
+      print('not found $barCode');
     }
   }
 }
