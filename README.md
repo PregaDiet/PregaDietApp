@@ -9,3 +9,5 @@ Through Prega Diet's article column, one can read articles or watch videos conta
 Prega Diet's Emergency Section contains a button, by taping that button one can send an alert to their friends and family which they added to the emergency list on Prega Diet. Our servers will make robot calls as well as send SOS SMS containing our user's live location. Their family/friends can come over or contact them to help.
 
 Here is our [Presentation](https://www.canva.com/design/DAEuYB7S5t0/VTV9gfkdjFJt-7xGhqr4uw/view?utm_content=DAEuYB7S5t0&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent) with detailed information.
+
+Here is our [Demoed](https://www.youtube.com/watch?v=H5dlPYYYgak&ab_channel=ManthanKhandale) video.
